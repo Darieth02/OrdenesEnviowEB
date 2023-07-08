@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rastreo de Envíos</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .tracking-form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .tracking-form input {
+            width: 250px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+        }
+        .tracking-form button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .tracking-result {
+            text-align: center;
+        }
+        #status {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        #map {
+            height: 300px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rastreo de Envíos</h1>
+
+    <div class="tracking-form">
+        <input type="text" id="tracking-number" placeholder="Ingrese el número de seguimiento">
+        <button onclick="trackPackage()">Rastrear</button>
+    </div>
+
+    <div class="tracking-result">
+        <h3>Estado del Envío</h3>
+        <p id="status"></p>
+
+        <h3>Ubicación Actual</h3>
+        <div id="map"></div>
+    </div>
+
+    <script>
+        function trackPackage() {
+            var trackingNumber = document.getElementById("tracking-number").value;
+            // Aquí puedes realizar la lógica para realizar la consulta de seguimiento utilizando la API del proveedor de envíos.
+            // Puedes enviar el número de seguimiento a tu servidor y obtener los datos del estado y la ubicación del envío.
+
+            // Ejemplo ficticio de datos de seguimiento
+            var status = "En tránsito";
+            var latitude = 25.675;
+            var longitude = -100.32;
+
+            // Actualiza los elementos HTML con los datos de seguimiento
+            document.getElementById("status").innerText = "Estado: " + status;
+
+            // Muestra la ubicación en el mapa utilizando Google Maps API (requiere una clave de API válida)
+            var map = new google.maps.Map(document.getElementById("map"), {
+                center: {lat: latitude, lng: longitude},
+                zoom: 10
+            });
+            var marker = new google.maps.Marker({
+                position: {lat: latitude, lng: longitude},
+                map: map
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=TU_CLAVE_DE_API&libraries=places"></script>
+</body>
+</html>
